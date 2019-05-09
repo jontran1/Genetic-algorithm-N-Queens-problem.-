@@ -5,8 +5,8 @@ import java.util.Random;
 
 
 public class Chromosome {
-    private List<Integer> sequence;
-    private int size;
+    private final List<Integer> sequence;
+    private final int size;
 
     /**
      * A new chromosome will be created with a permutation sequence
@@ -108,6 +108,10 @@ public class Chromosome {
         return new Chromosome(sequence);
     }
 
+    /**
+     * Mutate the chromosome.
+     * @param chromosome
+     */
     public static void mutateChromosome(Chromosome chromosome){
 
     }
