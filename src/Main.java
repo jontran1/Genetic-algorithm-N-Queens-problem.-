@@ -22,6 +22,19 @@ public class Main {
         System.out.println(p2);
         System.out.println(Chromosome.createChild(p1,p2));
 
+        List<Integer> l3 = new ArrayList<>();
+        l3.add(0);
+        l3.add(1);
+        l3.add(2);
+        l3.add(3);
+        l3.add(6);
+        l3.add(5);
+        l3.add(4);
+        l3.add(7);
+        Chromosome c1 = new Chromosome(l3);
+
+        System.out.println(Chromosome.getChromosomeFitness(c1));
+
     }
 
     /**

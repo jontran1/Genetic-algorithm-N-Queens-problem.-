@@ -128,7 +128,7 @@ public class Chromosome {
         int f2 [] = new int[size];
         for(int i = 0; i < size; i++){
             f1[i] = (chromosome.get(i)-i);
-            f2[i] = ((size+1)-chromosome.get(i)-i);
+            f2[i] = ((size)-chromosome.get(i)-i);
         }
         Arrays.sort(f1);
         Arrays.sort(f2);
