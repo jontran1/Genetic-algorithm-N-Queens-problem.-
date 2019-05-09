@@ -158,12 +158,14 @@ public class Chromosome {
         while (j == i){
             j = random.nextInt(p1.getSize());
         }
+        i = 5;
+        j = 2;
         List<Integer> subList;
         if(i < j){
-            subList = getSubSet(i, j+1, p1.getSequence());
+            subList = p1.getSequence().subList(i,j+1);
             child = createChildSequence(subList, p2.getSequence(), i);
         }else {
-            subList = getSubSet(j, i+1, p1.getSequence());
+            subList = p1.getSequence().subList(j,i+1);
             child = createChildSequence(subList, p2.getSequence(), j);
         }
         return child;
@@ -191,17 +193,6 @@ public class Chromosome {
             }
         }
         return child;
-    }
-
-    /**
-     * Returns a sublist from interval of i and j both inclusive.
-     * @param i
-     * @param j
-     * @param list
-     * @return New List sublist.
-     */
-    private static List<Integer> getSubSet(int i, int j, List list){
-        return list.subList(i,j);
     }
 
 }

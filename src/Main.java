@@ -5,7 +5,7 @@ public class Main {
     public static void main(String[] args) {
         List<Chromosome> population = generatePopulation(4, 4);
         System.out.println(population);
-/*
+
         List<Integer> l1 = new ArrayList<>();
         List<Integer> l2 = new ArrayList<>();
         l1.add(5);l2.add(1);
@@ -21,8 +21,7 @@ public class Main {
         System.out.println(p1);
         System.out.println(p2);
         System.out.println(Chromosome.createChild(p1,p2));
-        System.out.println(Chromosome.createChild(p2,p1));
-*/
+
     }
 
     /**
