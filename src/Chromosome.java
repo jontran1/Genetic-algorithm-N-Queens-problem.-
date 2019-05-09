@@ -108,6 +108,37 @@ public class Chromosome {
         return new Chromosome(sequence);
     }
 
+    public static void mutateChromosome(Chromosome chromosome){
+
+    }
+
+    /**
+     * Calculates the chromosomes fitness level.
+     * @param chromosome
+     * @return
+     */
+    public static int getChromosomeFitness(Chromosome chromosome){
+        int t1 = 0, t2 = 0;
+        int size = chromosome.getSize();
+        int f1 [] = new int[size];
+        int f2 [] = new int[size];
+        for(int i = 0; i < size; i++){
+            f1[i] = (chromosome.get(i)-i);
+            f2[i] = ((size+1)-chromosome.get(i)-i);
+        }
+        Arrays.sort(f1);
+        Arrays.sort(f2);
+        for (int i = 1; i < size; i++){
+            if(f1[i] == f1[i-1]){
+                t1 = t1 + 1;
+            }
+            if (f2[i] == f2[i-1]){
+                t2 = t2 + 1;
+            }
+        }
+        return t1 + t2;
+    }
+
     /**
      * A static helper function is used in creating the child's sequence.
      * A new sequence will be generated uses both's parents attributes.
@@ -123,10 +154,6 @@ public class Chromosome {
         while (j == i){
             j = random.nextInt(p1.getSize());
         }
-        System.out.println(i);
-        System.out.println(j);
-        i = 7;
-        j = 6;
         List<Integer> subList;
         if(i < j){
             subList = getSubSet(i, j+1, p1.getSequence());
@@ -151,17 +178,13 @@ public class Chromosome {
      */
     private static List<Integer> createChildSequence(List<Integer> subList, List<Integer> p2, int i){
         List<Integer> child = new ArrayList<>(p2.size());
-        int k = 0;
-        int j = 0;
-        while (child.size() != p2.size() || j < p2.size()){
+        for (int k = 0; k < p2.size(); k++){
             if (k == i){
                 child.addAll(subList);
             }
-            if (!subList.contains(p2.get(j))){
-                child.add(p2.get(j));
-                k++;
+            if (!subList.contains(p2.get(k))){
+                child.add(p2.get(k));
             }
-            j++;
         }
         return child;
     }
@@ -176,29 +199,5 @@ public class Chromosome {
     private static List<Integer> getSubSet(int i, int j, List list){
         return list.subList(i,j);
     }
-
-    public static int getChromosomeFitness(Chromosome chromosome){
-        int t1 = 0, t2 = 0;
-        int size = chromosome.getSize();
-        int f1 [] = new int[size];
-        int f2 [] = new int[size];
-        for(int i = 0; i < size; i++){
-            f1[i] = (chromosome.get(i)-i);
-            f2[i] = ((size+1)-chromosome.get(i)-i);
-        }
-        Arrays.sort(f1);
-        Arrays.sort(f2);
-        for (int i = 1; i < size; i++){
-            if(f1[i] == f1[i-1]){
-                t1 = t1 + 1;
-            }
-            if (f2[i] == f2[i-1]){
-                t2 = t2 + 1;
-            }
-        }
-        return t1 + t2;
-    }
-
-
 
 }
