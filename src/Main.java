@@ -25,7 +25,13 @@ public class Main {
 */
     }
 
-
+    /**
+     * Returns a new population of a specific population size and a
+     * specific chromosome size.
+     * @param populationSize
+     * @param chromosomeSize
+     * @return
+     */
     public static List<Chromosome> generatePopulation (int populationSize, int chromosomeSize){
         List<Chromosome> population = new ArrayList<>(populationSize);
         for (int i = 0; i < populationSize; i ++){
