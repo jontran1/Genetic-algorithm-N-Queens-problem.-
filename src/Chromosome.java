@@ -105,12 +105,14 @@ public class Chromosome {
         return new Chromosome(sequence);
     }
 
-    /**
-     * Mutate the chromosome.
-     * @param chromosome
-     */
-    public static void mutateChromosome(Chromosome chromosome){
 
+    /**
+     *
+     * @param chromosomeSequence
+     * @return
+     */
+    public static List<Integer> mutateChromosomeSequence(List<Integer> chromosomeSequence){
+        return null;
     }
 
     /**
