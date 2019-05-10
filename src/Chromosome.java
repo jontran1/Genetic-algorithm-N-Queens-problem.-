@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 
 public class Chromosome implements Comparable <Chromosome> {
@@ -22,6 +19,7 @@ public class Chromosome implements Comparable <Chromosome> {
     /**
      * A new chromosome will be created and its sequence will be
      * set to the list sequence argument passed as a parameter.
+     * This is for testing.
      * @param sequence
      */
     Chromosome(List<Integer> sequence) {
@@ -74,6 +72,9 @@ public class Chromosome implements Comparable <Chromosome> {
     public String toString() {
         return sequence.toString();
     }
+    public Object[] toArray(){
+        return sequence.toArray();
+    }
 
     /**
      * Uses parent 1 and parent 2's sequence to create a new child chromosome
@@ -110,11 +111,20 @@ public class Chromosome implements Comparable <Chromosome> {
 
 
     /**
-     *
+     *THIS MUTATION FUNCTION ISNT THE SAME ONE AS IN THE PAPER. I MADE MY OWN FOR TESTING.
+     * PLEASE FIX. LOOK AT CORSS OVER FUNCTION
      * @param chromosomeSequence
      * @return
      */
     public static List<Integer> mutateChromosomeSequence(List<Integer> chromosomeSequence){
+        Random random = new Random();
+        int i = random.nextInt(chromosomeSequence.size());
+        int j = random.nextInt(chromosomeSequence.size());
+        List<Integer> child;
+        while (j == i){
+            j = random.nextInt(chromosomeSequence.size());
+        }
+        Collections.swap(chromosomeSequence,i,j);
         return null;
     }
 
@@ -169,6 +179,10 @@ public class Chromosome implements Comparable <Chromosome> {
             subList = p1.getSequence().subList(j,i+1);
             child = createChildSequence(subList, p2.getSequence(), j);
         }
+        //Mutation should happen here. I suppose.
+        // I DONT KNOW HOW TO MUTATE THE CHILD SO I RAN THE FUNCTION TWICE.
+        mutateChromosomeSequence(child);
+        mutateChromosomeSequence(child);
         return child;
     }
 
