@@ -6,7 +6,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         int populationSize = 1000;
-        int chromosomeSize = 8;
+        int chromosomeSize = 100;
         int selectionFactor = 5;
         double rand = Math.random();
         int randomIndex1 = selectionOperator(populationSize,rand,selectionFactor);
@@ -23,7 +23,11 @@ public class Main {
             while (nextPopulation.size() < populationSize){
                 while (randomIndex2 == randomIndex1){
                     rand = Math.random();
+                    randomIndex1 = selectionOperator(populationSize,rand,selectionFactor);
+                    rand = Math.random();
+
                     randomIndex2 = selectionOperator(populationSize,rand,selectionFactor);
+
 
                 }
                 parent1 = population.get(randomIndex1);
