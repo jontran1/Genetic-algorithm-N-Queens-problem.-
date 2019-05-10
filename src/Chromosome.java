@@ -160,8 +160,7 @@ public class Chromosome implements Comparable <Chromosome> {
         while (j == i){
             j = random.nextInt(p1.getSize());
         }
-        i = 5;
-        j = 2;
+
         List<Integer> subList;
         if(i < j){
             subList = p1.getSequence().subList(i,j+1);
