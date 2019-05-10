@@ -6,7 +6,6 @@ import java.util.Random;
 
 public class Chromosome {
     private final List<Integer> sequence;
-    private final int size;
 
     /**
      * A new chromosome will be created with a permutation sequence
@@ -14,7 +13,6 @@ public class Chromosome {
      * @param size
      */
     Chromosome(int size){
-        this.size = size;
         sequence = new ArrayList<>(size);
         generateSequence();
     }
@@ -25,7 +23,6 @@ public class Chromosome {
      * @param sequence
      */
     Chromosome(List<Integer> sequence) {
-        this.size = sequence.size();
         this.sequence = sequence;
     }
 
@@ -34,7 +31,7 @@ public class Chromosome {
      * @return int size
      */
     public int getSize() {
-        return size;
+        return sequence.size();
     }
 
     /**
@@ -50,7 +47,7 @@ public class Chromosome {
      * sequence of the numbers 0,1,2....n-1
      */
     private void generateSequence(){
-        for(int i = 0; i < size; i++){
+        for(int i = 0; i < sequence.size(); i++){
             sequence.add(i);
         }
         java.util.Collections.shuffle(sequence);
