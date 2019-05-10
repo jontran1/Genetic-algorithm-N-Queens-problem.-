@@ -4,8 +4,9 @@ import java.util.List;
 import java.util.Random;
 
 
-public class Chromosome {
+public class Chromosome implements Comparable <Chromosome> {
     private final List<Integer> sequence;
+    private final int size;
 
     /**
      * A new chromosome will be created with a permutation sequence
@@ -13,7 +14,8 @@ public class Chromosome {
      * @param size
      */
     Chromosome(int size){
-        sequence = new ArrayList<>(size);
+        this.size = size;
+        this.sequence = new ArrayList<>(size);
         generateSequence();
     }
 
@@ -24,6 +26,7 @@ public class Chromosome {
      */
     Chromosome(List<Integer> sequence) {
         this.sequence = sequence;
+        this.size = sequence.size();
     }
 
     /**
@@ -31,7 +34,7 @@ public class Chromosome {
      * @return int size
      */
     public int getSize() {
-        return sequence.size();
+        return this.size;
     }
 
     /**
@@ -47,7 +50,7 @@ public class Chromosome {
      * sequence of the numbers 0,1,2....n-1
      */
     private void generateSequence(){
-        for(int i = 0; i < sequence.size(); i++){
+        for(int i = 0; i <getSize(); i++){
             sequence.add(i);
         }
         java.util.Collections.shuffle(sequence);
@@ -194,4 +197,14 @@ public class Chromosome {
         return child;
     }
 
+    /**
+     * Sorting the chromosomes by fitness level.
+     * @param chromosome
+     * @return
+     */
+    @Override
+    public int compareTo(Chromosome chromosome) {
+        int fitness = getChromosomeFitness(chromosome);
+        return getChromosomeFitness(this) - fitness;
+    }
 }

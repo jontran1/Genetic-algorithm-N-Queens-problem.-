@@ -1,10 +1,23 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
         List<Chromosome> population = generatePopulation(4, 4);
         System.out.println(population);
+        for (int i =0 ; i < population.size(); i ++){
+            System.out.println(Chromosome.getChromosomeFitness(population.get(i)));
+        }
+        Collections.sort(population);
+        System.out.println("___________________");
+        System.out.println(population);
+        for (int i =0 ; i < population.size(); i ++){
+            System.out.println(Chromosome.getChromosomeFitness(population.get(i)));
+        }
+
+
+
 
         List<Integer> l1 = new ArrayList<>();
         List<Integer> l2 = new ArrayList<>();
@@ -34,6 +47,8 @@ public class Main {
         Chromosome c1 = new Chromosome(l3);
 
         System.out.println(Chromosome.getChromosomeFitness(c1));
+
+
 
     }
 
