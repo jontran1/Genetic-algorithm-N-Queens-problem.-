@@ -6,12 +6,11 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         int populationSize = 1000;
-        int chromosomeSize = 100;
+        int chromosomeSize = 10;
         int selectionFactor = 5;
-        double rand = Math.random();
-        int randomIndex1 = selectionOperator(populationSize,rand,selectionFactor);
-        rand = Math.random();
-        int randomIndex2 = selectionOperator(populationSize,rand,selectionFactor);
+        double rand;
+        int randomIndex1;
+        int randomIndex2;
         Chromosome parent1;
         Chromosome parent2;
         Chromosome child1;
@@ -21,14 +20,15 @@ public class Main {
         while (Chromosome.getChromosomeFitness(population.get(0)) != 0){
             List<Chromosome> nextPopulation = new ArrayList<>(populationSize);
             while (nextPopulation.size() < populationSize){
+                rand = Math.random();
+                randomIndex1 = selectionOperator(populationSize,rand,selectionFactor);
+                rand = Math.random();
+                randomIndex2 = selectionOperator(populationSize,rand,selectionFactor);
                 while (randomIndex2 == randomIndex1){
                     rand = Math.random();
                     randomIndex1 = selectionOperator(populationSize,rand,selectionFactor);
                     rand = Math.random();
-
                     randomIndex2 = selectionOperator(populationSize,rand,selectionFactor);
-
-
                 }
                 parent1 = population.get(randomIndex1);
                 parent2 = population.get(randomIndex2);
