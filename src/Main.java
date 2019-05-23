@@ -5,7 +5,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         int populationSize = 1000;
-        int chromosomeSize = 8;
+        int chromosomeSize = 10;
         int selectionFactor = 5;
         runSimulation(chromosomeSize, populationSize, selectionFactor);
 
@@ -64,6 +64,7 @@ public class Main {
         Chromosome child2;
         List<Chromosome> population = generatePopulation(populationSize, chromosomeSize);
         Collections.sort(population);
+        int generation = 0;
         while (Chromosome.getChromosomeFitness(population.get(0)) != 0){
             List<Chromosome> nextPopulation = new ArrayList<>(populationSize);
             while (nextPopulation.size() < populationSize){
@@ -92,12 +93,13 @@ public class Main {
             }
             population = nextPopulation;
             Collections.sort(population);
-            System.out.println(Chromosome.getChromosomeFitness(population.get(0)));
+            generation++;
 
         }
-        System.out.println(population);
-        System.out.println(Chromosome.getChromosomeFitness(population.get(0)));
+        System.out.println("Population :" + population);
         System.out.println(getBoard(chromosomeSize,chromosomeSize,population.get(0).getSequence()));
+        System.out.println("Fitness level: " + Chromosome.getChromosomeFitness(population.get(0)));
+        System.out.println("It took " + generation + " generations");
 
     }
 
