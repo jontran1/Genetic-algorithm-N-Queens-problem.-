@@ -112,9 +112,7 @@ public class Chromosome implements Comparable <Chromosome> {
     }
 
 
-    /**
-     *THIS MUTATION FUNCTION ISNT THE SAME ONE AS IN THE PAPER. I MADE MY OWN FOR TESTING.
-     * PLEASE FIX. LOOK AT CORSS OVER FUNCTION
+    /**Testing mutation function don't use.
      * @param chromosomeSequence
      * @return
      */
@@ -129,6 +127,11 @@ public class Chromosome implements Comparable <Chromosome> {
         Collections.swap(chromosomeSequence,i,j);
     }
 
+    /**
+     * Two random variables are generated. One mutation has an 80 percent chance and
+     * the other has a 40 percent chance. If mutation is successful then mutationHelper function is called.
+     * @param childSequence
+     */
     private static void mutation(List<Integer> childSequence){
         Random random = new Random();
         int prob1 = random.nextInt(100);
@@ -143,6 +146,10 @@ public class Chromosome implements Comparable <Chromosome> {
 
     }
 
+    /**
+     * Two indexes are randomly selected and swapped.
+     * @param childSequence
+     */
     private static void mutationHelper(List<Integer> childSequence){
         Random random = new Random();
         int i = random.nextInt(childSequence.size()/2);
@@ -200,10 +207,6 @@ public class Chromosome implements Comparable <Chromosome> {
             subList = p1.getSequence().subList(j,i+1);
             child = createChildSequence(subList, p2.getSequence(), j);
         }
-        //Mutation should happen here. I suppose.
-        // I DONT KNOW HOW TO MUTATE THE CHILD SO I RAN THE FUNCTION TWICE.
-//        mutateChromosomeSequence(child);
-//        mutateChromosomeSequence(child);
         mutation(child);
         return child;
     }
