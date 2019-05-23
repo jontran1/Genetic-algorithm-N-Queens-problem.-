@@ -26,7 +26,15 @@ public class Main {
         return population;
     }
 
-    public static int selectionOperator(int populationSize, double rand, int selectionFactor){
+    /**
+     * Will randomly generate a number based on the population size, selection factor.
+     * Has a high probability of selecting a relatively low number to the population size.
+     * @param populationSize
+     * @param selectionFactor
+     * @return
+     */
+    public static int selectionOperator(int populationSize, int selectionFactor){
+        double rand = Math.random();
         return (int) (populationSize * Math.pow(rand, selectionFactor));
     }
 
@@ -54,8 +62,21 @@ public class Main {
         return stringBuilderBoard.toString();
     }
 
+    /**
+     * A random population will be generated and then sorted by fitness. The lower the fitness the better.
+     * An empty new population will created.
+     * The selection operator will randomly select chromosomes from the current population. Because the population is already
+     * sorted by fitness. The selection operator has a high chance of selecting very fit chromosomes for breeding.
+     * Once two chromosomes are selected. They will create two child via crossover and mutation functions.
+     * The two parents and two child are then added to the next population and this process repeats until the next
+     * population size grows to the max populationSize. Once that is finished, the next population is then sorted by fitness and
+     * it becomes the new current population. The entire process is repeated until the chromosome at population index 0 returns a
+     * fitness level of 0, thus indicating that a solution was found.
+     * @param chromosomeSize
+     * @param populationSize
+     * @param selectionFactor
+     */
     public static void runSimulation(int chromosomeSize, int populationSize, int selectionFactor){
-        double rand;
         int randomIndex1;
         int randomIndex2;
         Chromosome parent1;
@@ -67,18 +88,14 @@ public class Main {
         int generation = 0;
         while (Chromosome.getChromosomeFitness(population.get(0)) != 0){
             List<Chromosome> nextPopulation = new ArrayList<>(populationSize);
-            while (nextPopulation.size() < populationSize){
 
-                rand = Math.random();
-                randomIndex1 = selectionOperator(populationSize,rand,selectionFactor);
-                rand = Math.random();
-                randomIndex2 = selectionOperator(populationSize,rand,selectionFactor);
+            while (nextPopulation.size() < populationSize){
+                randomIndex1 = selectionOperator(populationSize,selectionFactor);
+                randomIndex2 = selectionOperator(populationSize,selectionFactor);
 
                 while (randomIndex2 == randomIndex1){
-                    rand = Math.random();
-                    randomIndex1 = selectionOperator(populationSize,rand,selectionFactor);
-                    rand = Math.random();
-                    randomIndex2 = selectionOperator(populationSize,rand,selectionFactor);
+                    randomIndex1 = selectionOperator(populationSize,selectionFactor);
+                    randomIndex2 = selectionOperator(populationSize,selectionFactor);
                 }
 
                 parent1 = population.get(randomIndex1);
