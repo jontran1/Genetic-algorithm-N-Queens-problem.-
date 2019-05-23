@@ -4,6 +4,8 @@ import java.util.*;
 public class Chromosome implements Comparable <Chromosome> {
     private final List<Integer> sequence;
     private final int size;
+    private Random random = new Random();
+
 
     /**
      * A new chromosome will be created with a permutation sequence
@@ -116,7 +118,7 @@ public class Chromosome implements Comparable <Chromosome> {
      * @param chromosomeSequence
      * @return
      */
-    public static List<Integer> mutateChromosomeSequence(List<Integer> chromosomeSequence){
+    public static void mutateChromosomeSequence(List<Integer> chromosomeSequence){
         Random random = new Random();
         int i = random.nextInt(chromosomeSequence.size());
         int j = random.nextInt(chromosomeSequence.size());
@@ -125,9 +127,28 @@ public class Chromosome implements Comparable <Chromosome> {
             j = random.nextInt(chromosomeSequence.size());
         }
         Collections.swap(chromosomeSequence,i,j);
-        return null;
     }
 
+    private static void mutation(List<Integer> childSequence){
+        Random random = new Random();
+        int prob1 = random.nextInt(100);
+        int prob2 = random.nextInt(100);
+
+        if(prob1 <= 80){
+            mutationHelper(childSequence);
+        }
+        if(prob2 <= 40){
+            mutationHelper(childSequence);
+        }
+
+    }
+
+    private static void mutationHelper(List<Integer> childSequence){
+        Random random = new Random();
+        int i = random.nextInt(childSequence.size()/2);
+        int j = i + random.nextInt(childSequence.size()-i);
+        Collections.swap(childSequence,i,j);
+    }
     /**
      * Calculates the chromosomes fitness level.
      * @param chromosome
@@ -181,8 +202,9 @@ public class Chromosome implements Comparable <Chromosome> {
         }
         //Mutation should happen here. I suppose.
         // I DONT KNOW HOW TO MUTATE THE CHILD SO I RAN THE FUNCTION TWICE.
-        mutateChromosomeSequence(child);
-        mutateChromosomeSequence(child);
+//        mutateChromosomeSequence(child);
+//        mutateChromosomeSequence(child);
+        mutation(child);
         return child;
     }
 
